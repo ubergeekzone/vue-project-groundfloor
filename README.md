@@ -21,4 +21,9 @@ $ yarn run build
 $ yarn start
 ```
 
+
+## Tasks
+
+
+
 [Nuxt.js Documentation](https://nuxtjs.org).

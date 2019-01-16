@@ -19,7 +19,7 @@
 <script>
 export default {
   async asyncData({ $axios }) {
-    let funded = await $axios.get('http://localhost:3333/api/funded')
+    let funded = await $axios.get('/api/funded')
     return {
       funded: funded.data
     }

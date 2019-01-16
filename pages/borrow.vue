@@ -97,11 +97,8 @@ export default {
       }
       let investment = await this.$axios({
         method: 'post',
-        url: 'http://localhost:3333/api/investment',
-        data: b,
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
+        url: '/api/investment',
+        data: b
       })
       this.$router.push({ path: `/funding` })
     }

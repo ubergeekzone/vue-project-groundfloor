@@ -11,10 +11,10 @@
       <b-container class="invest-action-buttons">
         <b-row>
           <b-col>
-            <b-button size="lg" variant="success">
+            <b-button size="lg" variant="success" @click="goFunding">
               FUND A LOAN
             </b-button>
-            <b-button size="lg" variant="primary">
+            <b-button size="lg" variant="primary" @click="goBorrow">
               BORROW
             </b-button>
           </b-col>
@@ -29,8 +29,8 @@ import Logo from '~/components/Logo.vue'
 
 export default {
   async asyncData({ $axios }) {
-    let funding = await $axios.get('http://localhost:3333/api/funding')
-    let funded = await $axios.get('http://localhost:3333/api/funded')
+    let funding = await $axios.get('api/funding')
+    let funded = await $axios.get('api/funded')
     return {
       funding: funding.data,
       funded: funded.data
@@ -42,6 +42,14 @@ export default {
   data() {
     return {
       key: 'value'
+    }
+  },
+  methods: {
+    goFunding() {
+      this.$router.push({ path: '/funding' })
+    },
+    goBorrow() {
+      this.$router.push({ path: '/borrow' })
     }
   }
 }
