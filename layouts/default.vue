@@ -1,7 +1,9 @@
 <template>
   <div>
     <GFHeader />
-    <nuxt/>
+    <main>
+      <nuxt/>
+    </main>
   </div>
 </template>
 
@@ -62,5 +64,9 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+main {
+  margin-top: 3em;
 }
 </style>
