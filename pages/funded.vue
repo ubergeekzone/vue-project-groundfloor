@@ -4,21 +4,22 @@
 
     <ul class="funded-list">
       <li v-for="investment in funded" :key="investment.id">
-        <p>
+        <nuxt-link :to="'/investment/' + investment.id">
           {{ investment.address }}
-        </p>
+        </nuxt-link>
         <p>
           {{ investment.loan_amount_dollars }}
         </p>
       </li>
     </ul>
+
   </b-container>
 </template>
 
 <script>
 export default {
   async asyncData({ $axios }) {
-    let funded = await $axios.get('http://localhost:3333/api/investment/funded')
+    let funded = await $axios.get('http://localhost:3333/api/funded')
     return {
       funded: funded.data
     }

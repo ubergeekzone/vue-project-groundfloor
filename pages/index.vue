@@ -29,10 +29,8 @@ import Logo from '~/components/Logo.vue'
 
 export default {
   async asyncData({ $axios }) {
-    let funding = await $axios.get(
-      'http://localhost:3333/api/investment/funding'
-    )
-    let funded = await $axios.get('http://localhost:3333/api/investment/funded')
+    let funding = await $axios.get('http://localhost:3333/api/funding')
+    let funded = await $axios.get('http://localhost:3333/api/funded')
     return {
       funding: funding.data,
       funded: funded.data
