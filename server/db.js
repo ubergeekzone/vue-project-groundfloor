@@ -20,8 +20,10 @@ db.serialize(() => {
   db.run(
     `CREATE TABLE IF NOT EXISTS funding (
       id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      investment_id INTEGER NOT NULL,
       amount INTEGER NOT NULL,
-      created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(investment_id) REFERENCES investment(id)
     );`
   )
 })
