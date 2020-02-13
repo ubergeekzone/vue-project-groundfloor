@@ -1,6 +1,13 @@
 <template>
   <b-container>
     <h2 class="title">BORROW</h2>
+    
+    <p v-if="errors.length">
+      <b>Please correct the following error(s):</b>
+      <ul>
+        <li v-for="error in errors" :key="error">{{ error }}</li>
+      </ul>
+    </p>
 
     <b-form @submit="onSubmit">
       <b-form-group label="Purpose"
@@ -78,29 +85,52 @@ export default {
           { text: 'Refinance - Cash Out', value: 'Refinance - Cash Out' }
         ]
       },
-      address: '',
+      address: null,
       rate: 10,
       expected_term_months: 12,
-      loan_amount_dollars: 100000
+      loan_amount_dollars: 100000,
+      errors: []
     }
   },
   methods: {
     async onSubmit(ev) {
       ev.preventDefault()
-      let { address, rate, expected_term_months, loan_amount_dollars } = this
+      let {
+        address,
+        rate,
+        expected_term_months,
+        loan_amount_dollars,
+        errors
+      } = this
       let b = {
         purpose: this.purpose.value,
         address,
         rate,
         expected_term_months,
-        loan_amount_dollars
+        loan_amount_dollars,
+        errors
       }
-      let investment = await this.$axios({
-        method: 'post',
-        url: '/api/investment',
-        data: b
-      })
-      this.$router.push({ path: `/funding` })
+      if (this.address) {
+        return true
+      }
+      this.errors = []
+      if (!this.address) {
+        this.errors.push('Address required.')
+      }
+      if (this.rate <= 5) {
+        this.errors.push('Rate must be more than 5%.')
+      }
+      if (this.loan_amount_dollars <= 50000) {
+        this.errors.push('Rate must be more than 50,000')
+      }
+      if (!this.errors) {
+        let investment = await this.$axios({
+          method: 'post',
+          url: '/api/investment',
+          data: b
+        })
+        this.$router.push({ path: `/funding` })
+      }
     }
   }
 }
