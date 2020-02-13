@@ -110,9 +110,6 @@ export default {
         loan_amount_dollars,
         errors
       }
-      if (this.address) {
-        return true
-      }
       this.errors = []
       if (!this.address) {
         this.errors.push('Address required.')
@@ -123,7 +120,7 @@ export default {
       if (this.loan_amount_dollars <= 50000) {
         this.errors.push('Rate must be more than 50,000')
       }
-      if (!this.errors) {
+      if (this.errors.length === 0) {
         let investment = await this.$axios({
           method: 'post',
           url: '/api/investment',

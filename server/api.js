@@ -5,8 +5,9 @@ let api = express.Router()
 
 api.get('/funding', (req, res, next) => {
   db.all(
-    `SELECT investment.*, funding.* FROM investment 
+    `SELECT investment.*, funding.investment_id, sum(funding.amount) as fundedAmount FROM investment 
        LEFT JOIN funding ON funding.investment_id = investment.id WHERE investment.fully_funded = 0
+       GROUP BY investment.id
        ORDER BY investment.created_on DESC
     `,
     (err, rows) => {
