@@ -5,9 +5,9 @@ let api = express.Router()
 
 api.get('/funding', (req, res, next) => {
   db.all(
-    `SELECT * FROM investment 
-       WHERE fully_funded = 0
-       ORDER BY created_on DESC
+    `SELECT investment.*, funding.* FROM investment 
+       LEFT JOIN funding ON funding.investment_id = investment.id WHERE investment.fully_funded = 0
+       ORDER BY investment.created_on DESC
     `,
     (err, rows) => {
       if (err) {
