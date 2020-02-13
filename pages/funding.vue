@@ -38,29 +38,29 @@ export default {
 </script>
 
 <style>
-ul {
+.funding-list {
   list-style: none;
   margin: 2em 0;
   padding: 0;
 }
-p {
+.funding-list li p {
   margin: 0.2em 0 0.2em 0;
 }
-p a {
+.funding-list li p a {
   font-weight: bold;
 }
 
-p:nth-child(n + 2) {
+.funding-list li p:nth-child(n + 2) {
   display: block;
   padding: 0 2em 2em 0;
   float: left;
 }
-p:nth-child(n + 2) span {
+.funding-list li p:nth-child(n + 2) span {
   font-weight: bold;
 }
 
 @media (max-width: 960px) {
-  p:nth-child(n + 2) {
+  .funding-list li p:nth-child(n + 2) {
     display: block;
     padding: 0 0.2em 0.2em 0;
     float: inherit;
