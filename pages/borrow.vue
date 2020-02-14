@@ -112,13 +112,13 @@ export default {
       }
       this.errors = []
       if (!this.address) {
-        this.errors.push('Address required.')
+        this.errors.push('Address is required.')
       }
       if (this.rate <= 5) {
         this.errors.push('Rate must be more than 5%.')
       }
       if (this.loan_amount_dollars <= 50000) {
-        this.errors.push('Rate must be more than 50,000')
+        this.errors.push('Loan amount must be more than $50,000')
       }
       if (this.errors.length === 0) {
         let investment = await this.$axios({

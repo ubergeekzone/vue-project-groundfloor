@@ -75,6 +75,7 @@ export default {
         url: '/api/funding',
         data: b
       })
+      location.reload()
     }
   }
 }

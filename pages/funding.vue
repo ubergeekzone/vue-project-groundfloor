@@ -36,7 +36,6 @@
 export default {
   async asyncData({ $axios }) {
     let funding = await $axios.get('/api/funding')
-    console.log(funding.data)
     return {
       funding: funding.data
     }
